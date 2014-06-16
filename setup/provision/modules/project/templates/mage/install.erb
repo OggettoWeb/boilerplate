@@ -1,0 +1,7 @@
+php -f install.php -- \
+    --license_agreement_accepted yes --locale <%= @locale %> --timezone "<%= @timezone %>" \
+    --default_currency <%= @currency %> --db_host localhost --db_name <%= @mage_db %> \
+    --db_user <%= @mage_db_user %> --db_pass <%= @mage_db_pass %> --url "<%= @unsecure_base_url %>" \
+    --skip_url_validation yes --admin_lastname <%= @admin_lastname %>  --admin_firstname <%= @admin_firstname %> \
+    --admin_email "<%= @admin_email %>" --admin_username <%= @admin_username %> --admin_password <%= @admin_pass %> \
+    --encryption_key <%= @enc_key %>

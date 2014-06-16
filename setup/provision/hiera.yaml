@@ -1,0 +1,8 @@
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: setup/provision/hiera
+:hierarchy:
+  - "node/localhost"
+  - common

@@ -1,0 +1,50 @@
+---
+project::system::hostname: magento.local
+
+### DB config
+project::db::root_pass: "12345"
+project::db::mage_db: magento
+project::db::mage_db_user: magento
+project::db::mage_db_pass: "12345"
+project::db::unit_db: magento_unit
+project::db::unit_db_user: magento
+project::db::unit_db_pass: "12345"
+
+
+### Magento config
+project::magento::root: "/var/www/magento"
+project::magento::unsecure_base_url: "http://magento.local/"
+project::magento::secure_base_url: "http://magento.local/"
+project::magento::enc_key: 42 # enter something unique like 828391092389bfa2830afb123facb123, but NOT this example
+
+
+### Magento installation config (fulfill if you are installing clean Magento)
+project::magento::install::locale: en_US
+project::magento::install::timezone: "America/Los_Angeles"
+project::magento::install::currency: USD
+project::magento::install::admin_firstname: John
+project::magento::install::admin_lastname: Doe
+project::magento::install::admin_email: foo@bar.com
+project::magento::install::admin_username: admin
+project::magento::install::admin_pass: admin123
+
+
+### PHP config
+project::php::remote_debug_host: 192.168.99.1
+
+
+### RabbitMQ config
+project::rabbitmq::port: "5672"
+project::rabbitmq::vhost: magento
+project::rabbitmq::user: magento
+project::rabbitmq::pass: admin123
+
+
+### PHPMyAdmin config
+project::phpma::root: "/var/www/phpma"
+
+
+### Backup resources
+project::resources::db::backup_path: "ftp://path/to/latest.sql.gz"
+project::resources::db::emails_domain: "devnull-as-a-service.com" # all emails in Magento will be changed to [random]@[emails_domain]
+project::resources::media::backup_path: "ftp://path/to/latest.tar.gz"

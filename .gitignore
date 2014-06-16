@@ -1,0 +1,33 @@
+# Magento dirs
+/app/etc/local.xml
+/var
+/vendor
+/media
+/tmp
+/downloader
+
+# OS garbage
+.DS_Store
+
+# IDE files
+/.idea
+/nbproject
+node_modules/
+
+# Vendors' files
+/app/code/community/EcomDev/
+/app/etc/modules/EcomDev_PHPUnit.xml
+/app/etc/modules/EcomDev_PHPUnitTest.xml
+/lib/EcomDev/
+/lib/Spyc
+/shell/ecomdev-phpunit.php
+/app/etc/local.xml.phpunit
+/phpunit.xml.dist
+/lib/vfsStream
+
+# Vagrant
+/.vagrant/
+/setup/sql/sample_data.sql
+/setup/var_db
+/setup/var_media
+Vagrantfile

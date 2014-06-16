@@ -1,0 +1,121 @@
+# Magento config
+project::magento::unit_db: "%{hiera('project::db::unit_db')}"
+project::magento::unit_db_user: "%{hiera('project::db::unit_db_user')}"
+project::magento::unit_db_pass: "%{hiera('project::db::unit_db_pass')}"
+project::magento::mage_db: "%{hiera('project::db::mage_db')}"
+project::magento::mage_db_user: "%{hiera('project::db::mage_db_user')}"
+project::magento::mage_db_pass: "%{hiera('project::db::mage_db_pass')}"
+
+
+# Magento installation config
+project::magento::install::mage_root: "%{hiera('project::magento::root')}"
+project::magento::install::mage_db: "%{hiera('project::db::mage_db')}"
+project::magento::install::mage_db_user: "%{hiera('project::db::mage_db_user')}"
+project::magento::install::mage_db_pass: "%{hiera('project::db::mage_db_pass')}"
+project::magento::install::unsecure_base_url: "%{hiera('project::magento::unsecure_base_url')}"
+project::magento::install::enc_key: "%{hiera('project::magento::enc_key')}"
+
+
+# Resources config
+project::resources::db::mage_root: "%{hiera('project::magento::root')}"
+project::resources::db::mage_db: "%{hiera('project::db::mage_db')}"
+project::resources::db::mage_unsecure_url: "%{hiera('project::magento::unsecure_base_url')}"
+project::resources::db::mage_secure_url: "%{hiera('project::magento::secure_base_url')}"
+project::resources::media::mage_root: "%{hiera('project::magento::root')}"
+
+
+### NGINX config
+nginx::nginx_vhosts:
+  "%{hiera('project::system::hostname')}":
+    ensure: present
+    www_root: "%{hiera('project::magento::root')}"
+    use_default_location: false
+    vhost_cfg_prepend:
+      root: "%{hiera('project::magento::root')}"
+  "phpma.%{hiera('project::system::hostname')}":
+    ensure: present
+    www_root: "%{hiera('project::phpma::root')}/phpMyAdmin-4.0.9-all-languages"
+    use_default_location: false
+    vhost_cfg_prepend:
+      root: "%{hiera('project::phpma::root')}/phpMyAdmin-4.0.9-all-languages"
+nginx::nginx_locations:
+  ### Magento NGINX config
+  "%{hiera('project::system::hostname')}.l0":
+    ensure: present
+    location: "/"
+    vhost: "%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      index: "index.html index.php"
+      try_files: "$uri $uri/ @handler"
+      expires: "30d"
+  "%{hiera('project::system::hostname')}.l10":
+    ensure: present
+    location: "~ ^/(app|includes|lib|media/downloadable|pkginfo|report/config.xml|var)/"
+    vhost: "%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      - internal
+  "%{hiera('project::system::hostname')}.l11":
+    ensure: present
+    location: "~ ^/_intellij_phpunit_launcher.php$"
+    vhost: "%{hiera('project::system::hostname')}"
+    fastcgi: "127.0.0.1:9000"
+    fastcgi_script: "$document_root/shell/_intellij_phpunit_launcher.php"
+    location_cfg_append:
+      expires: 'off'
+  "%{hiera('project::system::hostname')}.l2":
+    ensure: present
+    location: "@handler"
+    vhost: "%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      rewrite: "/ /index.php"
+  "%{hiera('project::system::hostname')}.l3":
+    ensure: present
+    location: "~* .php/"
+    vhost: "%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      rewrite: "^(.*.php)/ $1 last"
+  "%{hiera('project::system::hostname')}.l4":
+    ensure: present
+    location: "~* .php$"
+    vhost: "%{hiera('project::system::hostname')}"
+    fastcgi: "127.0.0.1:9000"
+    fastcgi_script: "$document_root$fastcgi_script_name"
+    location_cfg_prepend:
+      - "if (!-e $request_filename) { rewrite / /index.php last; } #"
+    location_cfg_append:
+      fastcgi_index: "index.php"
+      fastcgi_read_timeout: "3600"
+      expires: "off"
+      fastcgi_param:
+        - "MAGE_RUN_CODE uk"
+        - "MAGE_RUN_TYPE store"
+
+  ### PHPMyAdmin NGINX config
+  "phpma.%{hiera('project::system::hostname')}.l0":
+    ensure: present
+    location: "/"
+    vhost: "phpma.%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      index: "index.html index.php"
+      try_files: "$uri $uri/ @handler"
+      expires: "30d"
+  "phpma.%{hiera('project::system::hostname')}.l1":
+    ensure: present
+    location: "~ /\\."
+    vhost: "phpma.%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      - internal
+  "phpma.%{hiera('project::system::hostname')}.l2":
+    ensure: present
+    location: "@handler"
+    vhost: "phpma.%{hiera('project::system::hostname')}"
+    location_custom_cfg:
+      rewrite: "/ /index.php"
+  "phpma.%{hiera('project::system::hostname')}.l3":
+    ensure: present
+    location: "~ \\.php$"
+    vhost: "phpma.%{hiera('project::system::hostname')}"
+    fastcgi: "127.0.0.1:9000"
+    fastcgi_script: "$document_root$fastcgi_script_name"
+    location_cfg_prepend:
+      - "if (!-e $request_filename) { rewrite / /index.php last; } #"

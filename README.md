@@ -15,6 +15,7 @@ Quick overview of virtual machine:
 * [Composer](http://getcomposer.org), with some modules pre-installed.
 * MySQL 5.5 with databases set up.
 * RabbitMQ queue server.
+* Tool for database/media sync
 
 See [VM info](#) for more details
 

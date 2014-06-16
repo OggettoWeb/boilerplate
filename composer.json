@@ -1,0 +1,25 @@
+{
+    "require": {
+        "ivanchepurnyi/ecomdev_phpunit": "dev-master",
+        "mikey179/vfsStream": "dev-master",
+        "oggettoweb/coding_standard": "1.0.0",
+        "oggettoweb/ajax": "1.*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/OggettoWeb/EcomDev_PHPUnit"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/OggettoWeb/Oggetto-Coding-Standard"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/OggettoWeb/ajax"
+        }
+    ],
+    "extra": {
+        "magento-root-dir": "."
+    }
+}

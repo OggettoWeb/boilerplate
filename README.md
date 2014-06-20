@@ -24,6 +24,6 @@ Resources
 ---------
 
 * [Installation](https://github.com/OggettoWeb/boilerplate/wiki/Installation)
-* [Usage](#)
-* [Detailed VM info](#)
-* [Customization](#)
+* [Usage](https://github.com/OggettoWeb/boilerplate/wiki/Usage)
+* [Detailed VM info](https://github.com/OggettoWeb/boilerplate/wiki/Vm-info)
+* [Customization](https://github.com/OggettoWeb/boilerplate/wiki/Customization)

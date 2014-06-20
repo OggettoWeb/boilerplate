@@ -4,5 +4,5 @@
 :yaml:
   :datadir: setup/provision/hiera
 :hierarchy:
-  - "node/localhost"
+  - "node/%{::fqdn}"
   - common

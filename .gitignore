@@ -30,4 +30,3 @@ node_modules/
 /setup/sql/sample_data.sql
 /setup/var_db
 /setup/var_media
-Vagrantfile

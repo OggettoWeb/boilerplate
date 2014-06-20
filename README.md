@@ -23,7 +23,7 @@ See [VM info](#) for more details
 Resources
 ---------
 
-* [Installation](#)
+* [Installation](https://github.com/OggettoWeb/boilerplate/wiki/Installation)
 * [Usage](#)
 * [Detailed VM info](#)
 * [Customization](#)

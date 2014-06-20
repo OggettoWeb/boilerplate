@@ -10,12 +10,13 @@ These puppet scripts could be used to setup a local VM for developers as well as
 
 Quick overview of virtual machine:
 
-* Debian Linux.
-* NGINX Web Server + PHP 5.4 with minimum required modules set up.
-* [Composer](http://getcomposer.org), with some modules pre-installed.
-* MySQL 5.5 with databases set up.
-* RabbitMQ queue server.
+* Debian Linux
+* NGINX Web Server + PHP 5.4 with minimum required modules set up
+* [Composer](http://getcomposer.org), with some modules pre-installed
+* MySQL 5.5 with databases set up
+* RabbitMQ queue server
 * Tool for database/media sync
+* PHPMyAdmin
 
 See [VM info](#) for more details
 

@@ -18,7 +18,7 @@ Quick overview of virtual machine:
 * Tool for database/media sync
 * PHPMyAdmin
 
-See [VM info](#) for more details
+See [VM info](https://github.com/OggettoWeb/boilerplate/wiki/Vm-info) for more details
 
 Resources
 ---------

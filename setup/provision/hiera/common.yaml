@@ -13,6 +13,7 @@ project::magento::install::mage_db: "%{hiera('project::db::mage_db')}"
 project::magento::install::mage_db_user: "%{hiera('project::db::mage_db_user')}"
 project::magento::install::mage_db_pass: "%{hiera('project::db::mage_db_pass')}"
 project::magento::install::unsecure_base_url: "%{hiera('project::magento::unsecure_base_url')}"
+project::magento::install::secure_base_url: "%{hiera('project::magento::secure_base_url')}"
 project::magento::install::enc_key: "%{hiera('project::magento::enc_key')}"
 
 

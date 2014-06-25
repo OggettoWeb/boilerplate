@@ -4,4 +4,5 @@ php -f install.php -- \
     --db_user <%= @mage_db_user %> --db_pass <%= @mage_db_pass %> --url "<%= @unsecure_base_url %>" \
     --skip_url_validation yes --admin_lastname <%= @admin_lastname %>  --admin_firstname <%= @admin_firstname %> \
     --admin_email "<%= @admin_email %>" --admin_username <%= @admin_username %> --admin_password <%= @admin_pass %> \
-    --encryption_key <%= @enc_key %>
+    --encryption_key <%= @enc_key %> --use_rewrites yes --use_secure no \
+    --use_secure_admin no --secure_base_url "<%= @secure_base_url %>"

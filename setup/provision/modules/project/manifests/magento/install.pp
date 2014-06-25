@@ -5,6 +5,7 @@ class project::magento::install
   $mage_db_user,
   $mage_db_pass,
   $unsecure_base_url,
+  $secure_base_url,
   $enc_key,
   $locale,
   $timezone,

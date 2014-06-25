@@ -88,7 +88,7 @@ nginx::nginx_locations:
       fastcgi_read_timeout: "3600"
       expires: "off"
       fastcgi_param:
-        - "MAGE_RUN_CODE uk"
+        - "MAGE_RUN_CODE default"
         - "MAGE_RUN_TYPE store"
 
   ### PHPMyAdmin NGINX config

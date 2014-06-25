@@ -18,12 +18,12 @@ Quick overview of virtual machine:
 * Tool for database/media sync
 * PHPMyAdmin
 
-See [VM info](#) for more details
+See [VM info](https://github.com/OggettoWeb/boilerplate/wiki/Vm-info) for more details
 
 Resources
 ---------
 
-* [Installation](#)
-* [Usage](#)
-* [Detailed VM info](#)
-* [Customization](#)
+* [Installation](https://github.com/OggettoWeb/boilerplate/wiki/Installation)
+* [Usage](https://github.com/OggettoWeb/boilerplate/wiki/Usage)
+* [Detailed VM info](https://github.com/OggettoWeb/boilerplate/wiki/Vm-info)
+* [Customization](https://github.com/OggettoWeb/boilerplate/wiki/Customization)

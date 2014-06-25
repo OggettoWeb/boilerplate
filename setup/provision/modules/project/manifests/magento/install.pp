@@ -28,7 +28,7 @@ class project::magento::install
     exec { 'install_magento':
       command => template('project/mage/install.erb'),
       cwd     => $mage_root,
-      returns => 1,
+      returns => 0,
       require => Exec['install_sample_data'],
       onlyif  => "test ! -f $mage_root/app/etc/local.xml", # magento should be installed only if there is no local.xml already set up
     }

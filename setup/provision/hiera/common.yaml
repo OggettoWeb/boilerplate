@@ -24,6 +24,8 @@ project::resources::db::mage_unsecure_url: "%{hiera('project::magento::unsecure_
 project::resources::db::mage_secure_url: "%{hiera('project::magento::secure_base_url')}"
 project::resources::media::mage_root: "%{hiera('project::magento::root')}"
 
+# PHPMyAdmin
+project::phpma::version: "4.2.5"
 
 ### NGINX config
 nginx::nginx_vhosts:
@@ -35,10 +37,10 @@ nginx::nginx_vhosts:
       root: "%{hiera('project::magento::root')}"
   "phpma.%{hiera('project::system::hostname')}":
     ensure: present
-    www_root: "%{hiera('project::phpma::root')}/phpMyAdmin-4.0.9-all-languages"
+    www_root: "%{hiera('project::phpma::root')}/phpMyAdmin-%{hiera('project::phpma::version')}-all-languages"
     use_default_location: false
     vhost_cfg_prepend:
-      root: "%{hiera('project::phpma::root')}/phpMyAdmin-4.0.9-all-languages"
+      root: "%{hiera('project::phpma::root')}/phpMyAdmin-%{hiera('project::phpma::version')}-all-languages"
 nginx::nginx_locations:
   ### Magento NGINX config
   "%{hiera('project::system::hostname')}.l0":

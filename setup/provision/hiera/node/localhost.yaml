@@ -31,6 +31,8 @@ project::magento::install::admin_pass: admin123
 
 ### PHP config
 project::php::remote_debug_host: 192.168.99.1 # this should be same as Vagrant VM IP, but with 1 at the end
+project::php::web_user: "vagrant" # don't change for local installations
+project::php::web_group: "vagrant" # don't change for local installations
 
 
 ### RabbitMQ config

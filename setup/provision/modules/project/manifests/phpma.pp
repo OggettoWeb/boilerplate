@@ -1,18 +1,23 @@
 class project::phpma (
   $root,
-  $version
+  $version,
+  $web_user,
+  $web_group
 ) {
     # Download PHPMA
     file { 'phpma_dir':
         ensure => directory,
-        path   => $root
+        path   => $root,
+        owner  => $web_user,
+        group  => $web_group,
     }
 
     exec { 'download_phpma':
         command => "wget -O source.zip http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/$version/phpMyAdmin-$version-all-languages.zip/download",
         cwd     => $root,
         require => File['phpma_dir'],
-        onlyif  => "test ! -f $root/source.zip"
+        onlyif  => "test ! -f $root/source.zip",
+        user    => $web_user
     }
 
     # Extract PHPMA
@@ -20,7 +25,8 @@ class project::phpma (
         command => 'unzip source.zip',
         cwd     => $root,
         require => [Exec['download_phpma'], Package['unzip']],
-        onlyif  => "test ! -e $root/phpMyAdmin-$version-all-languages"
+        onlyif  => "test ! -e $root/phpMyAdmin-$version-all-languages",
+        user    => $web_user
     }
 
     # NGINX config for PHPMA is described in hiera files

@@ -26,6 +26,12 @@ project::resources::media::mage_root: "%{hiera('project::magento::root')}"
 
 # PHPMyAdmin
 project::phpma::version: "4.2.5"
+project::phpma::web_user: "%{hiera('project::php::web_user')}"
+project::phphpmap::web_group: "%{hiera('project::php::web_group')}"
+
+### PHP config
+project::php::web_user: "vagrant"
+project::php::web_group: "vagrant"
 
 ### NGINX config
 nginx::nginx_vhosts:

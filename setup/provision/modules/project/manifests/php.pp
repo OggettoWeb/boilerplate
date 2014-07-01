@@ -1,5 +1,7 @@
 class project::php (
-  $remote_debug_host
+  $remote_debug_host,
+  $web_user,
+  $web_group
 ) {
     include php::cli
     php::module { [ 'curl', 'mcrypt', 'gd', 'mysql', 'xdebug', 'dev' ]: }
@@ -45,5 +47,12 @@ class project::php (
     }
     file { "${php::params::php_conf_dir}/weakref.ini":
         content => 'extension = weakref.so',
+    }
+
+    # create session directory
+    file { [ '/var/lib/php', '/var/lib/php/session']:
+      ensure => 'directory',
+      owner  => $web_user,
+      group  => $web_group,
     }
 }

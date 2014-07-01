@@ -29,5 +29,13 @@ class project::phpma (
         user    => $web_user
     }
 
+    # Configure PHPMA
+    file { 'phpma/config.inc.php':
+      ensure  => present,
+      path    => "$root/config.inc.php",
+      content => template('project/phpma/config.inc.php.erb'),
+      require => Exec['unpack_phpma'],
+    }
+
     # NGINX config for PHPMA is described in hiera files
 }

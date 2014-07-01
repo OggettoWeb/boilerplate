@@ -43,7 +43,7 @@ nginx::nginx_vhosts:
       root: "%{hiera('project::phpma::root')}/phpMyAdmin-%{hiera('project::phpma::version')}-all-languages"
 nginx::nginx_locations:
   ### Magento NGINX config
-  "%{hiera('project::system::hostname')}.l0":
+  "l0.%{hiera('project::system::hostname')}":
     ensure: present
     location: "/"
     vhost: "%{hiera('project::system::hostname')}"
@@ -51,13 +51,13 @@ nginx::nginx_locations:
       index: "index.html index.php"
       try_files: "$uri $uri/ @handler"
       expires: "30d"
-  "%{hiera('project::system::hostname')}.l10":
+  "l1.%{hiera('project::system::hostname')}":
     ensure: present
     location: "~ ^/(app|includes|lib|media/downloadable|pkginfo|report/config.xml|var)/"
     vhost: "%{hiera('project::system::hostname')}"
     location_custom_cfg:
       - internal
-  "%{hiera('project::system::hostname')}.l11":
+  "l2.%{hiera('project::system::hostname')}":
     ensure: present
     location: "~ ^/_intellij_phpunit_launcher.php$"
     vhost: "%{hiera('project::system::hostname')}"
@@ -65,19 +65,19 @@ nginx::nginx_locations:
     fastcgi_script: "$document_root/shell/_intellij_phpunit_launcher.php"
     location_cfg_append:
       expires: 'off'
-  "%{hiera('project::system::hostname')}.l2":
+  "l3.%{hiera('project::system::hostname')}":
     ensure: present
     location: "@handler"
     vhost: "%{hiera('project::system::hostname')}"
     location_custom_cfg:
       rewrite: "/ /index.php"
-  "%{hiera('project::system::hostname')}.l3":
+  "l4.%{hiera('project::system::hostname')}":
     ensure: present
     location: "~* .php/"
     vhost: "%{hiera('project::system::hostname')}"
     location_custom_cfg:
       rewrite: "^(.*.php)/ $1 last"
-  "%{hiera('project::system::hostname')}.l4":
+  "l5.%{hiera('project::system::hostname')}":
     ensure: present
     location: "~* .php$"
     vhost: "%{hiera('project::system::hostname')}"
@@ -94,7 +94,7 @@ nginx::nginx_locations:
         - "MAGE_RUN_TYPE store"
 
   ### PHPMyAdmin NGINX config
-  "phpma.%{hiera('project::system::hostname')}.l0":
+  "l0.phpma.%{hiera('project::system::hostname')}":
     ensure: present
     location: "/"
     vhost: "phpma.%{hiera('project::system::hostname')}"
@@ -102,19 +102,19 @@ nginx::nginx_locations:
       index: "index.html index.php"
       try_files: "$uri $uri/ @handler"
       expires: "30d"
-  "phpma.%{hiera('project::system::hostname')}.l1":
+  "l1.phpma.%{hiera('project::system::hostname')}":
     ensure: present
     location: "~ /\\."
     vhost: "phpma.%{hiera('project::system::hostname')}"
     location_custom_cfg:
       - internal
-  "phpma.%{hiera('project::system::hostname')}.l2":
+  "l2.phpma.%{hiera('project::system::hostname')}":
     ensure: present
     location: "@handler"
     vhost: "phpma.%{hiera('project::system::hostname')}"
     location_custom_cfg:
       rewrite: "/ /index.php"
-  "phpma.%{hiera('project::system::hostname')}.l3":
+  "l3.phpma.%{hiera('project::system::hostname')}":
     ensure: present
     location: "~ \\.php$"
     vhost: "phpma.%{hiera('project::system::hostname')}"

@@ -14,7 +14,7 @@
  * This is needed for cookie based authentication to encrypt password in
  * cookie
  */
-$cfg['blowfish_secret'] = '<%= scope.function_md5([Time.now.gmtime]) %>';
+$cfg['blowfish_secret'] = '<%= scope.function_md5([scope.function_fqdn_rand([1000])]) %>';
 
 /*
  * Servers configuration

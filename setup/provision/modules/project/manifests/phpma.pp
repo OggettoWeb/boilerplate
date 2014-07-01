@@ -32,7 +32,7 @@ class project::phpma (
     # Configure PHPMA
     file { 'phpma/config.inc.php':
       ensure  => present,
-      path    => "$root/config.inc.php",
+      path    => "$root/phpMyAdmin-$version-all-languages/config.inc.php",
       content => template('project/phpma/config.inc.php.erb'),
       require => Exec['unpack_phpma'],
     }

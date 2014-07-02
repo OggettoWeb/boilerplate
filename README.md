@@ -15,7 +15,7 @@ Quick overview of virtual machine:
 * [Composer](http://getcomposer.org), with some modules pre-installed
 * MySQL 5.5 with databases set up
 * RabbitMQ queue server
-* Tool for database/media sync
+* Tool for database/media sync from remote dump to local machine
 * PHPMyAdmin
 
 See [VM info](https://github.com/OggettoWeb/boilerplate/wiki/Vm-info) for more details

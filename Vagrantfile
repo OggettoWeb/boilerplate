@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network "private_network", ip: "192.168.99.99"
-  config.vm.synced_folder ".", "/var/www/magento", nfs: true
+  config.vm.synced_folder ".", "/var/www/magento", nfs: true, mount_options: ['rw', 'tcp', 'nolock', 'async']
 
   config.vm.provision :shell, :inline => "sudo apt-get update"
   config.vm.provision "puppet" do |puppet|

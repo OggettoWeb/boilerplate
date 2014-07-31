@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", mem],
+    v.customize ["modifyvm", :id, "--memory", mem]
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
 

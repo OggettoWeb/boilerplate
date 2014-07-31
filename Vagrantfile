@@ -1,8 +1,21 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "puppetlabs/debian-7.4-64-puppet"
+  
+  # Give VM 1/4 system memory on the host
+  host = RbConfig::CONFIG['host_os']
+  if host =~ /darwin/
+    # sysctl returns Bytes and we need to convert to MB
+    mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 4
+  elsif host =~ /linux/
+    # meminfo shows KB and we need to convert to MB
+    mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
+  else
+    mem = 2048
+  end
 
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", "2048"]
+    v.customize ["modifyvm", :id, "--memory", mem],
+    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
 
   config.vm.network "private_network", ip: "192.168.99.99"

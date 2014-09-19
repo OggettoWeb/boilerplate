@@ -33,9 +33,11 @@ class project::magento (
   ### Install composer dependancies
   include composer
   composer::exec { 'magento_composer_install':
-    cmd       => 'install',
-    cwd       => $root,
-    logoutput => true,
+    cmd               => 'install',
+    cwd               => $root,
+    logoutput         => true,
+    scripts           => true,
+    custom_installers => true
   }
 
 
@@ -50,15 +52,8 @@ class project::magento (
     ],
   }
   exec { 'setup_magento_tests':
-    command => 'php ecomdev-phpunit.php -a magento-config --db-user $unit_db_user --db-pwd $unit_db_pass --db-name $unit_db --base-url $unsecure_base_url',
+    command => "php ecomdev-phpunit.php -a magento-config --db-user $unit_db_user --db-pwd $unit_db_pass --db-name $unit_db --base-url $unsecure_base_url",
     cwd     => "$root/shell",
     require =>  Exec['install_magento_tests'],
-  }
-
-  # Create symlink of VFSStream lib to make Ecomdev tests work
-  file { "$root/lib/vfsStream":
-    ensure => 'link',
-    target => "$root/vendor/mikey179/vfsStream",
-    require => Composer::Exec['magento_composer_install']
   }
 }

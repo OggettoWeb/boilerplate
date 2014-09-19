@@ -1,7 +1,6 @@
 {
     "require": {
-        "ivanchepurnyi/ecomdev_phpunit": "dev-master",
-        "mikey179/vfsStream": "dev-master",
+        "ecomdev/ecomdev_phpunit": "*",
         "oggettoweb/coding_standard": "1.0.0",
         "oggettoweb/ajax": "1.*"
     },

@@ -1,6 +1,6 @@
 {
     "require": {
-        "ecomdev/ecomdev_phpunit": "*",
+        "ecomdev/ecomdev_phpunit": "dev-master",
         "oggettoweb/coding_standard": "1.0.0",
         "oggettoweb/ajax": "1.*"
     },

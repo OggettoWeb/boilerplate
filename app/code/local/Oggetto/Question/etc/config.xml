@@ -109,5 +109,14 @@
                 </question>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <Oggetto_Question>
+                    <files>
+                        <default>Oggetto_Question.csv</default>
+                    </files>
+                </Oggetto_Question>
+            </modules>
+        </translate>
     </adminhtml>
 </config>

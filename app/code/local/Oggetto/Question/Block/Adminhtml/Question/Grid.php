@@ -44,6 +44,7 @@ class Oggetto_Question_Block_Adminhtml_Question_Grid extends Mage_Adminhtml_Bloc
         $this->setDefaultDir('DESC');
         $this->setUseAjax(true);
         $this->setSaveParametersInSession(true);
+        return parent::__construct();
     }
 
     /**
@@ -53,13 +54,15 @@ class Oggetto_Question_Block_Adminhtml_Question_Grid extends Mage_Adminhtml_Bloc
      */
     protected function _prepareCollection()
     {
-        $collection = Mage::getModel('questions/question')->getCollection();
+        /* @var $collection Oggetto_Question_Model_Resource_Question_Collection */
+        $collection = Mage::getModel('question/question')->getCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
 
     protected function _prepareColumns()
     {
+
         $this->addColumn('id', array(
             'type'      => 'number',
             'index'     => 'id',
@@ -84,12 +87,6 @@ class Oggetto_Question_Block_Adminhtml_Question_Grid extends Mage_Adminhtml_Bloc
             'header'    => $this->__('Email'),
         ));
 
-        $this->addColumn('email', array(
-            'type'      => 'text',
-            'index'     => 'email',
-            'header'    => $this->__('Email'),
-        ));
-
         $this->addColumn('created_at', array(
             'type'      => 'datetime',
             'index'     => 'created_at',
@@ -99,8 +96,45 @@ class Oggetto_Question_Block_Adminhtml_Question_Grid extends Mage_Adminhtml_Bloc
         $this->addColumn('status', array(
             'type'      => 'options',
             'index'     => 'status',
-            'header'    => $this->__('Created At'),
+            'header'    => $this->__('Status'),
             'options'   => Mage::getModel('question/question_status')->getStatusOptions(),
         ));
+        return parent::_prepareColumns();
+    }
+
+    protected function _prepareMassaction()
+    {
+        $this->setMassactionIdField('id');
+        $this->getMassactionBlock()->setFormFieldName('id');
+
+        $this->getMassactionBlock()->addItem('delete', array(
+            'label' => $this->__('Delete'),
+            'url'   => $this->getUrl('*/*/massDelete'),
+            'confirm' => $this->__('Are you sure?')
+        ));
+
+        return $this;
+    }
+
+    /**
+     * Get grid url
+     *
+     * @return string
+     */
+    public function getGridUrl()
+    {
+        return $this->getUrl('*/*/grid', array('_current' => true));
+    }
+
+    /**
+     * Return row url for js event handlers
+     *
+     * @param Mage_Catalog_Model_Product|Varien_Object $row row
+     *
+     * @return string
+     */
+    public function getRowUrl($row)
+    {
+        return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
 }

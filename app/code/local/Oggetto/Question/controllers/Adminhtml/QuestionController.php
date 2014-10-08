@@ -45,6 +45,20 @@ class Oggetto_Question_Adminhtml_QuestionController extends Mage_Adminhtml_Contr
     }
 
     /**
+     * Ajax grid action
+     *
+     * @return void
+     */
+    public function gridAction()
+    {
+        $this->loadLayout();
+        $this->renderLayout();
+//        $this->getResponse()->setBody(
+//            $this->getLayout()->createBlock('question/adminhtml_question_grid')->toHtml()
+//        );
+    }
+
+    /**
      * Create new question action
      *
      * @return void

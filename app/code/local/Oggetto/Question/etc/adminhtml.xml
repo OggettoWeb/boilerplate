@@ -1,4 +1,5 @@
-<?php
+<?xml version="1.0"?>
+<!--
 /**
  * Oggetto Web extenstion for Magento
  *
@@ -21,27 +22,17 @@
  * @copyright  Copyright (C) 2014 Oggetto Web (http://oggettoweb.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
-/**
- * Questions grid container block
- *
- * @category   Oggetto
- * @package    Oggetto_Question
- * @subpackage Block
- * @author     Danil Pavlov <dpavlov@oggettoweb.com>
- */
-class Oggetto_Question_Block_Adminhtml_Question extends Mage_Adminhtml_Block_Widget_Grid_Container
-{
-    /**
-     * Construct questions grid container
-     *
-     * @return Oggetto_Question_Block_Adminhtml_Question
-     */
-    public function __construct()
-    {
-        $this->_blockGroup = 'question';
-        $this->_controller = 'adminhtml_question';
-        $this->_headerText = $this->__('Customer Questions Grid');
-        parent::__construct();
-    }
-}
+-->
+<config>
+    <menu>
+        <customer>
+            <children>
+                <question module="question">
+                    <title>Questions</title>
+                    <sort_order>200</sort_order>
+                    <action>adminhtml/question</action>
+                </question>
+            </children>
+        </customer>
+    </menu>
+</config>

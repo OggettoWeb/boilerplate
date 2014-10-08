@@ -29,7 +29,10 @@
 <layout>
     <adminhtml_question_index>
         <reference name="content">
-            <!--<block type=-->
+            <block type="question/adminhtml_question" />
         </reference>
     </adminhtml_question_index>
+    <adminhtml_question_grid>
+        <block type="question/adminhtml_question" name="root"/>
+    </adminhtml_question_grid>
 </layout>

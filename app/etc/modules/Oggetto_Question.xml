@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Oggetto_Question>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Oggetto_Question>
+    </modules>
+</config>

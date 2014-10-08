@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Oggetto Web extenstion for Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade
+ * the Oggetto Question module to newer versions in the future.
+ * If you wish to customize the Oggetto Question module for your needs
+ * please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Oggetto
+ * @package    Oggetto_Question
+ * @copyright  Copyright (C) 2014 Oggetto Web (http://oggettoweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Oggetto_Question>
+            <version>0.1.0</version>
+        </Oggetto_Question>
+    </modules>
+    <global>
+        <models>
+            <question>
+                <class>Oggetto_Question_Model</class>
+                <resourceModel>question_resource</resourceModel>
+            </question>
+            <question_resource>
+                <class>Oggetto_Question_Model_Resource</class>
+                <entities>
+                    <question>
+                        <table>question</table>
+                    </question>
+                </entities>
+            </question_resource>
+        </models>
+        <resources>
+            <oggetto_question_setup>
+                <setup>
+                    <module>Oggetto_Question</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </oggetto_question_setup>
+        </resources>
+        <blocks>
+            <question>
+                <class>Oggetto_Question_Block</class>
+            </question>
+        </blocks>
+        <helpers>
+            <question>
+                <class>Oggetto_Question_Helper</class>
+            </question>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <question>
+                <use>standard</use>
+                <args>
+                    <frontName>question</frontName>
+                    <module>Oggetto_Question</module>
+                </args>
+            </question>
+        </routers>
+        <layout>
+            <updates>
+                <question>
+                    <file>oggetto/question.xml</file>
+                </question>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Oggetto_Question>
+                    <files>
+                        <default>Oggetto_Question.csv</default>
+                    </files>
+                </Oggetto_Question>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Oggetto_Question before="Mage_Adminthml">Oggetto_Question_Adminhtml</Oggetto_Question>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <question>
+                    <file>oggetto/question.xml</file>
+                </question>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

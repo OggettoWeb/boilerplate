@@ -1,14 +1,14 @@
 class project::magento (
-  $root,
-  $unit_db,
-  $unit_db_user,
-  $unit_db_pass,
-  $mage_db,
-  $mage_db_user,
-  $mage_db_pass,
-  $unsecure_base_url,
-  $secure_base_url,
-  $enc_key
+$root,
+$unit_db,
+$unit_db_user,
+$unit_db_pass,
+$mage_db,
+$mage_db_user,
+$mage_db_pass,
+$unsecure_base_url,
+$secure_base_url,
+$enc_key
 ) {
 
   ### Install Magento
@@ -18,7 +18,8 @@ class project::magento (
     ensure  => present,
     path    => "$root/app/etc/local.xml",
     content => template('project/mage/app/etc/local.xml.erb'),
-    require => Class['project::magento::install']
+    require => Class['project::magento::install'],
+    mode    => 'u=rw,go=r' 
   }
 
 

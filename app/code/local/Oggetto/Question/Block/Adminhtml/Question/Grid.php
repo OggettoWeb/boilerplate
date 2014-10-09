@@ -23,7 +23,7 @@
  */
 
 /**
- * Questions grid container block
+ * Questions grid block
  *
  * @category   Oggetto
  * @package    Oggetto_Question
@@ -105,13 +105,27 @@ class Oggetto_Question_Block_Adminhtml_Question_Grid extends Mage_Adminhtml_Bloc
     protected function _prepareMassaction()
     {
         $this->setMassactionIdField('id');
-        $this->getMassactionBlock()->setFormFieldName('id');
+        $this->getMassactionBlock()->setFormFieldName('ids');
 
         $this->getMassactionBlock()->addItem('delete', array(
             'label' => $this->__('Delete'),
             'url'   => $this->getUrl('*/*/massDelete'),
             'confirm' => $this->__('Are you sure?')
-        ));
+        ))
+            ->addItem('change_status', array(
+            'label' => $this->__('Change status'),
+            'url'   => $this->getUrl('*/*/massChangeStatus'),
+            'additional'   => array(
+                'visibility'    => array(
+                    'name'     => 'status',
+                    'type'     => 'select',
+                    'class'    => 'required-entry',
+                    'label'    => $this->__('Status'),
+                    'values'   => Mage::getModel('question/question_status')->getStatusOptions(),
+                )
+            )
+        ))
+        ;
 
         return $this;
     }

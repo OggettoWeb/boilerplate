@@ -53,9 +53,41 @@ class Oggetto_Question_Adminhtml_QuestionController extends Mage_Adminhtml_Contr
     {
         $this->loadLayout();
         $this->renderLayout();
-//        $this->getResponse()->setBody(
-//            $this->getLayout()->createBlock('question/adminhtml_question_grid')->toHtml()
-//        );
+    }
+
+    public function massDeleteAction()
+    {
+        $session = $this->_getSession();
+        try {
+            $ids = $this->getRequest()->getParam('ids');
+            foreach ($ids as $id) {
+                Mage::getModel('question/question')->setId($id)->delete();
+                $session->addSuccess($this->__('Question #%s has been deleted', $id));
+            }
+        } catch (Exception $e) {
+            $session->addError($this->__('Error on deleting question'));
+            Mage::logException($e);
+        }
+        $this->_redirect('*/*/');
+    }
+
+    public function massChangeStatusAction()
+    {
+        $session = $this->_getSession();
+        try {
+            $ids = $this->getRequest()->getParam('ids');
+            $status = $this->getRequest()->getParam('status');
+            foreach ($ids as $id) {
+                Mage::getModel('question/question')->setId($id)->changeStatus($status);
+            }
+            $session->addSuccess($this->__('Status has been changed'));
+        } catch (Mage_Core_Exception $e) {
+            $session->addError($e->getMessage());
+        } catch (Exception $e) {
+            $session->addError($this->__('Error on changing question status'));
+            Mage::logException($e);
+        }
+        $this->_redirect('*/*/');
     }
 
     /**
@@ -63,7 +95,7 @@ class Oggetto_Question_Adminhtml_QuestionController extends Mage_Adminhtml_Contr
      *
      * @return void
      */
-    public function createAction()
+    public function saveAction()
     {
         if ($this->getRequest()->isPost()) {
             $data    = $this->getRequest()->getParams();
@@ -71,7 +103,7 @@ class Oggetto_Question_Adminhtml_QuestionController extends Mage_Adminhtml_Contr
             $session = Mage::getSingleton('core/session');
 
             try {
-                $result = $model->create($data);
+                $result = $model->edit($data);
                 if (is_array($result)) {
                     foreach ($result as $message) {
                         $session->addError($message);
@@ -86,6 +118,61 @@ class Oggetto_Question_Adminhtml_QuestionController extends Mage_Adminhtml_Contr
                 $session->addError($this->__('Failed to create question'));
             }
         }
-        $this->_forward('index');
+        $this->_redirect('*/*/');
+    }
+
+    public function deleteAction()
+    {
+        $session = $this->_getSession();
+        try {
+            $id = $this->getRequest()->getParam('id');
+            Mage::getModel('question/question')->setId($id)->delete();
+            $session->addSuccess($this->__('Question #%s has been deleted', $id));
+        } catch (Exception $e) {
+            $session->addError($this->__('Error on deleting question'));
+            Mage::logException($e);
+        }
+        $this->_redirect('*/*/');
+    }
+
+    /**
+     * New question action
+     *
+     * @return void
+     */
+    public function newAction()
+    {
+        $this->_forward('edit');
+    }
+
+    /**
+     * Edit question action
+     *
+     * @return void
+     */
+    public function editAction()
+    {
+        $this->_init();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+
+
+    /**
+     * Init data for question edit form
+     *
+     * @return $this
+     */
+    private function _init()
+    {
+        $id = $this->getRequest()->getParam('id');
+        if ($id) {
+            $item = Mage::getModel('question/question')->load($id);
+
+            Mage::register('question_data', $item);
+
+            return $this;
+        }
     }
 }

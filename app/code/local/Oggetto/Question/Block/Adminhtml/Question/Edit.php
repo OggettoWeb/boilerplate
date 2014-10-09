@@ -23,41 +23,25 @@
  */
 
 /**
- * Question model
+ * Question form container block
  *
  * @category   Oggetto
  * @package    Oggetto_Question
- * @subpackage Model
+ * @subpackage Block
  * @author     Danil Pavlov <dpavlov@oggettoweb.com>
  */
-class Oggetto_Question_Model_Question_Status
+class Oggetto_Question_Block_Adminhtml_Question_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
-    const QUESTION_STATUS_NOT_ANSWERED  = 0;
-    const QUESTION_STATUS_ANSWERED      = 1;
-
     /**
-     * Get question statuses
+     * Construct questions grid container
      *
-     * @return array
+     * @return Oggetto_Question_Block_Adminhtml_Question_Edit
      */
-    public function getStatusOptions()
+    public function __construct()
     {
-        return array(
-            self::QUESTION_STATUS_NOT_ANSWERED  => Mage::helper('question')->__('Not Answered'),
-            self::QUESTION_STATUS_ANSWERED      => Mage::helper('question')->__('Answered'),
-        );
-    }
-
-    /**
-     * Get all question statuses
-     *
-     * @return array
-     */
-    public function getAllStatuses()
-    {
-        return array(
-            self::QUESTION_STATUS_NOT_ANSWERED,
-            self::QUESTION_STATUS_ANSWERED,
-        );
+        $this->_blockGroup = 'question';
+        $this->_controller = 'adminhtml_question';
+        $this->_headerText = $this->__('Customer Question Edit Form');
+        parent::__construct();
     }
 }

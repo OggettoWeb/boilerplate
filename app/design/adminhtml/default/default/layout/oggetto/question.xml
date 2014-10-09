@@ -35,4 +35,9 @@
     <adminhtml_question_grid>
         <block type="question/adminhtml_question" name="root"/>
     </adminhtml_question_grid>
+    <adminhtml_question_edit>
+        <reference name="content">
+            <block type="question/adminhtml_question_edit" name="question_edit" />
+        </reference>
+    </adminhtml_question_edit>
 </layout>

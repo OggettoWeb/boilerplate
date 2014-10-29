@@ -6,8 +6,8 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/OggettoWeb/EcomDev_PHPUnit"
+            "type": "composer",
+            "url": "http://packages.firegento.com"
         },
         {
             "type": "vcs",

@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "puppetlabs/debian-7.4-64-puppet"
+  config.vm.box = "puppetlabs/debian-7.6-64-puppet"
   
   # Give VM 1/4 system memory on the host
   host = RbConfig::CONFIG['host_os']
